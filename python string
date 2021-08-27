@@ -1,0 +1,183 @@
+
+Using Strings in Python 3
+
+
+Creating Strings
+Enclose a string in single or double quotes, or in triple single quotes.
+And you can embed single quotes within double quotes, or double quotes within single quotes.
+
+In [1]:
+s = 'Tony Stark is'
+t = "Ironman."
+print(s, t)
+u = 'Her book is called "The Magician".'
+print(u)
+v = '''Captain Rogers kicks butt.'''
+print(v)
+Tony Stark is Ironman.
+Her book is called "The Magician".
+Captain Rogers kicks butt.
+Type, Len, Split, Join
+Get the number of characters in a string using len.
+To get the number of words you have to split the string into a list. Split uses a space as its default, or you can split on any substring you like.
+To reverse a split, use join(str).
+
+In [2]:
+print(type(s))
+print(len(s))
+<class 'str'>
+13
+In [3]:
+print(s.split())
+print(len(s.split()))
+print(u.split('a'))
+print('you,are,so,pretty'.split(','))
+print(' '.join(['Just', 'do', 'it.']))
+['Tony', 'Stark', 'is']
+3
+['Her book is c', 'lled "The M', 'gici', 'n".']
+['you', 'are', 'so', 'pretty']
+Just do it.
+Check if a substring is contained in a string
+Use in or not in.
+Startswith and Endswith are also useful boolean checks.
+
+In [4]:
+print('dog' in s)
+print('k' in t)
+print('k' not in t)
+print(s.startswith('Tony'))
+print(s.endswith('is'))
+False
+False
+True
+True
+True
+Replace all substrings
+Second example iterates through a dictionary and replaces all instances of text numbers with numerals.
+
+In [5]:
+v = v.replace('Rogers', 'America')
+print(v)
+Captain America kicks butt.
+In [6]:
+z = 'Anton has three cars. Javier has four.'
+numbers = {'one':'1', 'two':'2', 'three':'3', 'four':'4', 'five':'5'}
+for k,v in numbers.items():
+    z = z.replace(k,v)
+print(z)
+Anton has 3 cars. Javier has 4.
+Change case
+In [7]:
+print(s.lower())
+print(t.upper())
+print(u.title())
+print('hulk rules!'.capitalize())
+tony stark is
+IRONMAN.
+Her Book Is Called "The Magician".
+Hulk rules!
+In [8]:
+print('david'.islower())
+print('hulk'.isupper())
+print('Hulk'.istitle())
+print('covid19'.isalnum())
+True
+False
+True
+True
+In [9]:
+print('Thor'.isalpha())
+print('3.14'.isnumeric())
+print('314'.isdigit())
+print('3.14'.isdecimal())
+True
+False
+True
+False
+In [10]:
+import string
+print(string.digits)
+print(string.punctuation)
+print(string.ascii_lowercase)
+print(string.ascii_uppercase)
+0123456789
+!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Strip leading or trailing characters
+This is often used to strip blank spaces or newlines, but can be used for much more.
+
+In [11]:
+w = '\n  Natasha is a spy \n'
+x = '\nShe has red hair\n'
+
+print(w.strip() + '.')
+print(w.lstrip())
+print(w.rstrip())
+print(w.strip() + '. ' + x.strip() + '.')
+print(x.strip().rstrip('arih'))
+Natasha is a spy.
+Natasha is a spy 
+
+
+  Natasha is a spy
+Natasha is a spy. She has red hair.
+She has red 
+In [12]:
+y = 'What do you want?!!&?'
+print(y.rstrip(string.punctuation))
+What do you want
+Find, and Count substrings
+Search from the left with find, or from the right with rfind.
+The return value is the start index of the first match of the substring.
+
+In [14]:
+print(y.find('a'))
+print(y.rfind('do'))
+print(y)
+2
+5
+What do you want?!!&?
+In [16]:
+print(w.strip())
+print(w.count('a'))
+Natasha is a spy
+4
+Strings are immutable
+Any change to a string results in a new string being written to a new block of memory.
+
+In [17]:
+m = 'Black widow'
+print(id(m))
+m = m + 's'
+print(id(m))
+4565794160
+4565793776
+In [18]:
+print(s, t)
+z = s + ' ' + t
+print(z)
+Tony Stark is Ironman.
+Tony Stark is Ironman.
+Slicing Substrings
+string[from:to+1:step] Only 1 parameter: it is used as an index.
+From defaults to beginning.
+To defaults to end.
+Step defaults to 1.
+
+In [19]:
+z = '0123456789'
+print(z[1])
+print(z[5:8])
+1
+567
+In [20]:
+print(z[:3])
+print(z[7:])
+print(z[-2:])
+print(z[2:5:2])
+012
+789
+89
+24
